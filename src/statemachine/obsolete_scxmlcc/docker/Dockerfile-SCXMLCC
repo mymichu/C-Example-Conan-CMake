@@ -1,0 +1,16 @@
+FROM conanio/clang9-x86
+
+RUN sudo apt-get update\
+    && sudo apt-get install -y software-properties-common \
+    && sudo add-apt-repository universe \
+    && sudo apt-get install -y libboost-all-dev
+
+RUN git clone https://github.com/jp-embedded/scxmlcc.git \
+    && cd scxmlcc \
+    && git checkout 9c1404d52b1eceea9dc241ed5641f701031880ad \
+    && mkdir build \
+    && cd build \
+    && cmake .. \
+    && cmake --build .
+
+ENV PATH="~/scxmlcc:${PATH}"

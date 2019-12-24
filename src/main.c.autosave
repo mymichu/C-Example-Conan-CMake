@@ -1,5 +1,6 @@
 #include "utils/calculator.h"
-#include <stdio.h>
+#include <stdio.h> 
+#include "statemachine/scxmlcc/main_sm_adapter.h"
 int main(int argc, char *argv[])
 {
     printf("------ VALUE ------\n");
@@ -10,7 +11,13 @@ int main(int argc, char *argv[])
            printf("Difference: %d\n",diffrence);
         }
     }
-
+    //SCXMLCC
+    run();
+    buttonOn();
+    update();
+    buttonOff();
+    update();
+    //USCXML
     uscxml_init();
     uscxml_buttonOn();
     uscxml_update_sm();
