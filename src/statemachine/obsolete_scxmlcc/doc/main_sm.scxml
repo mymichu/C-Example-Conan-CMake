@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" initial="Off" name="main-state-machine">
+    <state id="Off">
+        <transition event="trButtonOn" target="On" />
+    </state>
+    <state id="On">
+        <transition event="trButtonOff" target="Off" />
+    </state>
+</scxml>

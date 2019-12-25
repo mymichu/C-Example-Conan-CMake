@@ -1,0 +1,5 @@
+{
+    "cmake.configureOnOpen": false,
+    "conan.installCommand": "conan install .. --profile ../.conan-profile/clang",
+    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools"
+}
