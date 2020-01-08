@@ -23,10 +23,13 @@ RUN apt-get update \
     python3-pip \
 	git \
     clang-9 \
+    lldb-9 \
+    clang-format-9 \
     cmake \
     #
     && ln -s /usr/bin/clang-9 /usr/bin/clang \
     && ln -s /usr/bin/clang++-9 /usr/bin/clang++ \
+    && ln -s /usr/bin/lldb-9 /usr/bin/lldb \
     #
     && git clone https://github.com/mymichu/uscxml.git /opt/uscxml \
 	&& cd /opt/uscxml \

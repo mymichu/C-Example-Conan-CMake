@@ -23,6 +23,9 @@
 	"extensions": [
 		"ms-vscode.cpptools",
 		"ms-vscode.cmake-tools",
-		"fireblackhat.conan-tools"
+		"fireblackhat.conan-tools",
+		"twxs.cmake",
+		"matepek.vscode-catch2-test-adapter",
+		"vadimcn.vscode-lldb"
 	]
 }
