@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 3.16)
 set(_USCXML_PATH ${CMAKE_CURRENT_SOURCE_DIR}/statemachine/uscxml)
 set(_USCXML_GEN_PATH ${CMAKE_CURRENT_BINARY_DIR}/generated_uscxml)
 
-set(_SCXML_FILE ${_USCXML_PATH}/doc/main_sm.scxml)
+set(_SCXML_FILE ${CMAKE_CURRENT_SOURCE_DIR}/../doc/main_sm.scxml)
 set(_GEN_SM_H_FILE ${_USCXML_GEN_PATH}/main_sm.h)
 
 if (WIN32)
@@ -18,7 +18,7 @@ if (WIN32)
         OUTPUT ${_GEN_SM_H_FILE}
         COMMAND ${CMAKE_COMMAND} -E make_directory ${_USCXML_GEN_PATH}
         COMMAND uscxml-transform.exe -tc -i ${_WIN_SCXML_FILE} -o ${_WIN_GEN_SM_H_FILE}
-        DEPENDS ${_USCXML_PATH}/doc/main_sm.scxml
+        DEPENDS ${_SCXML_FILE} 
         COMMENT "Generating code for ${_USCXML_GEN_PATH}/main_sm.h. ${_WIN_SCXML_FILE} -o ${_WIN_GEN_SM_H_FILE}"
     )
 else()
@@ -26,7 +26,7 @@ else()
         OUTPUT ${_GEN_SM_H_FILE}
         COMMAND ${CMAKE_COMMAND} -E make_directory ${_USCXML_GEN_PATH}
         COMMAND uscxml-transform -tc -i ${_SCXML_FILE} -o ${_GEN_SM_H_FILE}
-        DEPENDS ${_USCXML_PATH}/doc/main_sm.scxml
+        DEPENDS ${_SCXML_FILE} 
         COMMENT "Generating code for state-machine"
     )
 endif (WIN32)

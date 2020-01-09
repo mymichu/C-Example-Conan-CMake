@@ -11,7 +11,7 @@
 
 	// Use 'appPort' to create a container with published ports. If the port isn't working, be sure
 	// your server accepts connections from all interfaces (0.0.0.0 or '*'), not just localhost.
-	// "appPort": [],
+	"appPort": [3000, 3001,3002],
 
 	// Uncomment the next line to run commands after the container is created.
 	// "postCreateCommand": "gcc -v",
@@ -23,6 +23,10 @@
 	"extensions": [
 		"ms-vscode.cpptools",
 		"ms-vscode.cmake-tools",
-		"fireblackhat.conan-tools"
+		"fireblackhat.conan-tools",
+		"twxs.cmake",
+		"matepek.vscode-catch2-test-adapter",
+		"vadimcn.vscode-lldb",
+		"mhutchie.git-graph"
 	]
 }

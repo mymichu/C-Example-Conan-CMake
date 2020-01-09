@@ -27,6 +27,7 @@ RUN apt-get update \
     #
     && ln -s /usr/bin/clang-9 /usr/bin/clang \
     && ln -s /usr/bin/clang++-9 /usr/bin/clang++ \
+    && ln -s /usr/bin/lldb-9 /usr/bin/lldb \
     #
     && git clone https://github.com/mymichu/uscxml.git /opt/uscxml \
 	&& cd /opt/uscxml \
