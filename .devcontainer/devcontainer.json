@@ -26,6 +26,7 @@
 		"fireblackhat.conan-tools",
 		"twxs.cmake",
 		"matepek.vscode-catch2-test-adapter",
-		"vadimcn.vscode-lldb"
+		"vadimcn.vscode-lldb",
+		"mhutchie.git-graph"
 	]
 }
