@@ -10,11 +10,5 @@ int main(int argc, char *argv[])
            printf("Difference: %d\n",diffrence);
         }
     }
-
-    uscxml_init();
-    uscxml_buttonOn();
-    uscxml_update_sm();
-    uscxml_buttonOff();
-    uscxml_update_sm();
     return 0;
 }

@@ -1,9 +1,6 @@
 [
     {
-        "name":"clang 9.0",
-        "compilers": {
-            "CC" : "/usr/bin/clang",
-            "CXX": "/usr/bin/clang++"
-        }
+        "name":"clang 10.0",
+        "toolchainFile": "../toolchain-clang-linux.cmake"
     }
 ]

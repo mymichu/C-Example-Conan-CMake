@@ -3,40 +3,25 @@
 # $ cmake --version
 cmake_minimum_required(VERSION 3.16)
 
-set(_USCXML_PATH ${CMAKE_CURRENT_SOURCE_DIR}/statemachine/uscxml)
-set(_USCXML_GEN_PATH ${CMAKE_CURRENT_BINARY_DIR}/generated_uscxml)
-
-set(_SCXML_FILE ${CMAKE_CURRENT_SOURCE_DIR}/../doc/main_sm.scxml)
-set(_GEN_SM_H_FILE ${_USCXML_GEN_PATH}/main_sm.h)
-
-if (WIN32)
-    #Replace to Windows paths
-    string(REPLACE "/" "\\" _WIN_SCXML_FILE "${_SCXML_FILE}")
-    string(REPLACE "/" "\\" _WIN_GEN_SM_H_FILE "${_GEN_SM_H_FILE}")
-
-    add_custom_command(
-        OUTPUT ${_GEN_SM_H_FILE}
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${_USCXML_GEN_PATH}
-        COMMAND uscxml-transform.exe -tc -i ${_WIN_SCXML_FILE} -o ${_WIN_GEN_SM_H_FILE}
-        DEPENDS ${_SCXML_FILE} 
-        COMMENT "Generating code for ${_USCXML_GEN_PATH}/main_sm.h. ${_WIN_SCXML_FILE} -o ${_WIN_GEN_SM_H_FILE}"
-    )
-else()
-    add_custom_command(
-        OUTPUT ${_GEN_SM_H_FILE}
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${_USCXML_GEN_PATH}
-        COMMAND uscxml-transform -tc -i ${_SCXML_FILE} -o ${_GEN_SM_H_FILE}
-        DEPENDS ${_SCXML_FILE} 
-        COMMENT "Generating code for state-machine"
-    )
-endif (WIN32)
-
-add_library(statemachine_obj
-        ${_GEN_SM_H_FILE}
-        statemachine/uscxml/uscxml_main_sm.c)
+#Include Conan
+link_directories(${CONAN_LIB_DIRS})
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)
 
 
-include_directories(calculator PUBLIC ${_USCXML_GEN_PATH})
+#Define Source and headers
+SET(SRC_FILE_LIST
+    utils/calculator.h
+    utils/calculator.c)
+    
+#Create Object-library
+add_library(calculator_obj OBJECT "${SRC_FILE_LIST}")
+
+#Add Currentfolder and make Files Public
+find_package("Utility" REQUIRED)
+Prepend(SOURCE_LIST_ABSOLUTE ${CMAKE_CURRENT_SOURCE_DIR} ${SRC_FILE_LIST})
+set(SRC_FILES ${SOURCE_LIST_ABSOLUTE} ${HEADER_LIST_ABSOLUTE} PARENT_SCOPE)
 
 # Add an executable
-add_executable(calculator main.c utils/calculator.c $<TARGET_OBJECTS:statemachine_obj>)
+add_executable(calculator main.c $<TARGET_OBJECTS:calculator_obj>)
+

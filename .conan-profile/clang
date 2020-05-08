@@ -1,10 +1,9 @@
 [settings]
 compiler=clang
-compiler.version=9
+compiler.version=10
 compiler.libcxx=libstdc++11
 arch=x86_64
 os=Linux
 
 [env]
-CC=/usr/bin/clang
-CXX=/usr/bin/clang++
+CMAKE_TOOLCHAIN_FILE=$PROFILE_DIR/../toolchain-clang-linux.cmake
