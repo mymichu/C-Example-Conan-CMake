@@ -32,7 +32,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     vim \
     sudo \
     git-core \
-    gdb
+    gdb \
+    ssh
 # Create a non-root user to use if preferred - see https://aka.ms/vscode-remote/containers/non-root-user.
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME 
