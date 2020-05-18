@@ -17,7 +17,6 @@ class Calculator(ConanFile):
         return cmake
 
     def build(self):
-        cmake = CMake(self)
         cmake = self.configure_cmake()
         self.run('cmake --build . --target check-format-files')
         cmake.build()
